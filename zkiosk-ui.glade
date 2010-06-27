@@ -115,15 +115,17 @@
     <property name="title" translatable="yes">Acerca de zKiosk</property>
     <property name="resizable">False</property>
     <property name="window_position">center-always</property>
+    <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
     <property name="urgency_hint">True</property>
+    <property name="transient_for">window1</property>
     <property name="has_separator">False</property>
     <property name="program_name">zKiosk</property>
     <property name="version">0.1</property>
     <property name="copyright" translatable="yes">(C) CopyRight 2010 Hiram Jeronimo Perez Guzman [w&#xF8;Rg] &lt;worg@linuxmail.org&gt;
 Este programa es distribuido bajo los terminos de la licencia GPL version 3</property>
     <property name="comments" translatable="yes">zombie kiosk
-Made by GUZLEZ</property>
+Powered by GUZLEZ</property>
     <property name="license" translatable="yes">GNU GENERAL PUBLIC LICENSE
 
 Version 3, 29 June 2007
@@ -314,7 +316,7 @@ If the disclaimer of warranty and limitation of liability provided above cannot 
 END OF TERMS AND CONDITIONS</property>
     <property name="authors">Hiram Jeronimo Perez Guzman
 Agradecimientos:
-GUSLEZ
+GUSLEZ &lt;http://www.guslez.esimez.ipn.mx/irc&gt;
 BNCT</property>
     <property name="wrap_license">True</property>
     <child internal-child="vbox">
