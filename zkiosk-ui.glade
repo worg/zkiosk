@@ -16,17 +16,16 @@
         <property name="visible">True</property>
         <child>
           <object class="GtkToolbar" id="ToolBar">
-            <property name="height_request">60</property>
             <property name="visible">True</property>
-            <property name="toolbar_style">both</property>
+            <property name="toolbar_style">icons</property>
             <property name="show_arrow">False</property>
             <property name="tooltips">False</property>
+            <property name="icon_size">2</property>
             <child>
               <object class="GtkToolButton" id="home">
                 <property name="visible">True</property>
                 <property name="is_important">True</property>
                 <property name="label" translatable="yes">Inicio</property>
-                <property name="use_underline">True</property>
                 <property name="stock_id">gtk-home</property>
                 <signal name="clicked" handler="home" after="yes"/>
               </object>
@@ -39,7 +38,6 @@
               <object class="GtkToolButton" id="back">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Atr&#xE1;s</property>
-                <property name="use_underline">True</property>
                 <property name="stock_id">gtk-undo</property>
                 <signal name="clicked" handler="back"/>
               </object>
@@ -52,7 +50,6 @@
               <object class="GtkToolButton" id="fwd">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Adelante</property>
-                <property name="use_underline">True</property>
                 <property name="stock_id">gtk-redo</property>
                 <signal name="clicked" handler="fwd"/>
               </object>
@@ -65,7 +62,6 @@
               <object class="GtkToolButton" id="reload">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">Recargar</property>
-                <property name="use_underline">True</property>
                 <property name="stock_id">gtk-refresh</property>
                 <signal name="clicked" handler="refresh"/>
               </object>
@@ -78,7 +74,6 @@
               <object class="GtkToolButton" id="about">
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">?</property>
-                <property name="use_underline">True</property>
                 <property name="stock_id">gtk-info</property>
                 <signal name="clicked" handler="about"/>
               </object>
@@ -125,7 +120,7 @@
     <property name="copyright" translatable="yes">(C) CopyRight 2010 Hiram Jeronimo Perez Guzman [w&#xF8;Rg] &lt;worg@linuxmail.org&gt;
 Este programa es distribuido bajo los terminos de la licencia GPL version 3</property>
     <property name="comments" translatable="yes">zombie kiosk
-Powered by GUZLEZ</property>
+Powered by GUSLEZ</property>
     <property name="license" translatable="yes">GNU GENERAL PUBLIC LICENSE
 
 Version 3, 29 June 2007
