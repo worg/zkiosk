@@ -4,15 +4,13 @@ import pygtk
 import webkit
 import ConfigParser
 from os import popen
-from commands import getoutput
-import psyco
-
-psyco.full()
+from sys import path
 
 #Introducimos el valor por default a la configuracion, en caso de que no exista
 cfg = ConfigParser.SafeConfigParser({"web": "http://148.204.48.96/uhtbin/webcat", "theme": "gtkrc"})
 # Leemos el archivo de configuracion
-localpath = getoutput("pwd") + '/'
+localpath = path[0]
+localpath += '/'
 cfg.read([localpath +"config.cfg"])  
 #Asignamos los valores de la configuracion a variables para su uso posterior
 web = cfg.get("Biblio","web")
@@ -21,7 +19,7 @@ theme = cfg.get("Biblio","theme")
 class Window:
 	def __init__(self):
 		self.builder = gtk.Builder() 
-		self.builder.add_from_file('zkiosk-ui.glade')
+		self.builder.add_from_file(localpath + 'zkiosk-ui.glade')
 		self.window = self.builder.get_object('window1')
 		self.Browser = self.builder.get_object('Browser')
 
