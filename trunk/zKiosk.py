@@ -27,7 +27,9 @@ class Window:
 		self.webview = webkit.WebView() 
 		self.Browser.add(self.webview)
 		Settings = self.webview.get_settings()
-		Settings.set_property("user-agent","Mozilla/5.0 (X11; U; Linux i686; es-mx) AppleWebKit/531.2+ (KHTML, like Gecko) zombieKiosk/TequilaEngine 0.1.2 Safari/531.2+")
+		useragent = Settings.get_property("user-agent")
+		useragent = useragent.replace(' Safari/',' zombieKiosk/DrunkEngine Safari/')
+		Settings.set_property("user-agent",useragent)
 		#cambiando a pantalla completa
 		maxx = gtk.gdk.screen_width() 
 		maxy = gtk.gdk.screen_height() 
@@ -39,7 +41,8 @@ class Window:
 		gtk.rc_add_default_file(theme)
 		gtk.rc_reparse_all()
 		
-		self.window.show_all() #mustra los elementos de la ventana
+		#muestra los elementos de la ventana
+		self.window.show_all()
 		
 		#conectando los botones y eventos de la ventana a las funciones 
 		self.builder.connect_signals(self)
