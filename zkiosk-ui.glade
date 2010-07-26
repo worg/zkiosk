@@ -2,7 +2,7 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
-  <object class="GtkWindow" id="window1">
+  <object class="GtkWindow" id="window">
     <property name="title" translatable="yes">zKiosk</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
@@ -113,8 +113,8 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
     <property name="urgency_hint">True</property>
-    <property name="transient_for">window1</property>
-    <property name="opacity">0.94999999999999996</property>
+    <property name="transient_for">window</property>
+    <property name="opacity">1</property>
     <property name="has_separator">False</property>
     <property name="program_name">zKiosk</property>
     <property name="version">0.1</property>
@@ -330,8 +330,8 @@ Si la ausencia de garant&#xED;a y la limitaci&#xF3;n de responsabilidad descrita
 FIN DE T&#xC9;RMINOS Y CONDICIONES</property>
     <property name="authors">Hiram Jeronimo Perez Guzman
 Agradecimientos:
-GUSLEZ &lt;http://www.guslez.esimez.ipn.mx/irc&gt;
-BNCT</property>
+GUSLEZ &lt;http://www.guslez.esimez.ipn.mx&gt;
+BNCT &lt;http://www.bnct.ipn.mx&gt;</property>
     <property name="wrap_license">True</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
