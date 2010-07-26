@@ -5,8 +5,7 @@
 using Gtk;
 using WebKit;
 
-//const string WEB = "http://148.204.48.96/uhtbin/webcat/";
-const string WEB = "http://whatsmyuseragent.com";
+const string WEB = "http://148.204.48.96/uhtbin/webcat/";
 const string THEME = "gtkrc";
 
 
