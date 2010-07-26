@@ -20,7 +20,7 @@ class Window:
 	def __init__(self):
 		self.builder = gtk.Builder() 
 		self.builder.add_from_file(localpath + 'zkiosk-ui.glade')
-		self.window = self.builder.get_object('window1')
+		self.window = self.builder.get_object('window')
 		self.Browser = self.builder.get_object('Browser')
 
 		#inicializa el widget del motor de renderizado y lo agrega a la interfaz
