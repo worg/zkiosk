@@ -9,9 +9,9 @@ from sys import path as spath
 
 #Creamos la variable del módulo para leer la configuración
 cfg = ConfigParser.ConfigParser()
-# Leemos el archivo de configuracion
+
 localpath = spath[0]
-localpath += '/'
+localpath += '/' # ''' Obtenemos la ruta en la que está el programa  y le agregamos / al final '''
 configpath = path.expanduser("~/.zkioskrc")
 
 if path.exists(configpath): #'''Si existe el archivo de configuración, lo lee'''
@@ -19,12 +19,12 @@ if path.exists(configpath): #'''Si existe el archivo de configuración, lo lee''
 
 else:
 
-	configf = ConfigParser.ConfigParser()
+	configf = ConfigParser.ConfigParser() # '''En caso de que no exista, crea uno con valores por default'''
 	configf.add_section("Biblio")
 	configf.set("Biblio", "web","http://148.204.48.96/uhtbin/webcat")
 	configf.set("Biblio", "theme", "gtkrc")
 	
-	with open(configpath, "wb") as configfl:
+	with open(configpath, "wb") as configfl: #''' Guarda el archivo que creamos ''' 
 		configf.write(configfl)
 		
 	cfg.read(configpath)  
@@ -33,7 +33,7 @@ else:
 web = cfg.get("Biblio","web")
 theme = cfg.get("Biblio","theme")
 	
-class Window:
+class zKiosk:
 	def __init__(self):
 		self.builder = gtk.Builder() 
 		self.builder.add_from_file(localpath + 'zkiosk-ui.glade')
@@ -43,11 +43,12 @@ class Window:
 		#inicializa el widget del motor de renderizado y lo agrega a la interfaz
 		self.webview = webkit.WebView() 
 		self.Browser.add(self.webview)
-		Settings = self.webview.get_settings()
+		#Cambia el user-agent (por cuestión estética y de identificación para estadísticas)
+		Settings = self.webview.get_settings()		
 		useragent = Settings.get_property("user-agent")
 		useragent = useragent.replace(' Safari/',' zombieKiosk/DrunkEngine Safari/')
 		Settings.set_property("user-agent",useragent)
-		#cambiando a pantalla completa
+		#cambiando a pantalla completa la ventana
 		maxx = gtk.gdk.screen_width() 
 		maxy = gtk.gdk.screen_height() 
 		self.window.set_size_request(maxx,maxy) 
@@ -95,7 +96,7 @@ class Window:
 		return True
 				
 if __name__ == '__main__':
-	w = Window()
+	w = zKiosk()
 	popen("xsetroot -cursor_name left_ptr")
 	w.webview.load_uri(web)
 	gtk.main()
