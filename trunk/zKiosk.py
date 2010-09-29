@@ -1,17 +1,34 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import gtk
 import pygtk
 import webkit
 import ConfigParser
-from os import popen
-from sys import path
+from os import popen, path
+from sys import path as spath
 
-#Introducimos el valor por default a la configuracion, en caso de que no exista
-cfg = ConfigParser.SafeConfigParser({"web": "http://148.204.48.96/uhtbin/webcat", "theme": "gtkrc"})
+#Creamos la variable del módulo para leer la configuración
+cfg = ConfigParser.ConfigParser()
 # Leemos el archivo de configuracion
-localpath = path[0]
+localpath = spath[0]
 localpath += '/'
-cfg.read([localpath +"config.cfg"])  
+configpath = path.expanduser("~/.zkioskrc")
+
+if path.exists(configpath): #'''Si existe el archivo de configuración, lo lee'''
+	cfg.read(configpath)
+
+else:
+
+	configf = ConfigParser.ConfigParser()
+	configf.add_section("Biblio")
+	configf.set("Biblio", "web","http://148.204.48.96/uhtbin/webcat")
+	configf.set("Biblio", "theme", "gtkrc")
+	
+	with open(configpath, "wb") as configfl:
+		configf.write(configfl)
+		
+	cfg.read(configpath)  
+
 #Asignamos los valores de la configuracion a variables para su uso posterior
 web = cfg.get("Biblio","web")
 theme = cfg.get("Biblio","theme")
