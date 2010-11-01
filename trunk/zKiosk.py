@@ -1,9 +1,11 @@
-#!/usr/bin/env python2.6
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import gtk
 import pygtk
 import webkit
 import ConfigParser
+import thread
+from threading import Timer
 from os import popen, path
 from sys import path as spath
 
@@ -24,8 +26,9 @@ else:
 	configf.set("Biblio", "web","http://148.204.48.96/uhtbin/webcat")
 	configf.set("Biblio", "theme", "gtkrc")
 	
-	with open(configpath, "wb") as configfl: #''' Guarda el archivo que creamos ''' 
-		configf.write(configfl)
+	configfl = open(configpath, "wb") #''' Guarda el archivo que creamos ''' 
+	configf.write(configfl)
+	configfl.close()
 		
 	cfg.read(configpath)  
 
@@ -48,6 +51,7 @@ class zKiosk:
 		useragent = Settings.get_property("user-agent")
 		useragent = useragent.replace(' Safari/',' zombieKiosk/DrunkEngine Safari/')
 		Settings.set_property("user-agent",useragent)
+		Settings.set_property("enable-plugins",False)
 		#cambiando a pantalla completa la ventana
 		maxx = gtk.gdk.screen_width() 
 		maxy = gtk.gdk.screen_height() 
@@ -61,10 +65,12 @@ class zKiosk:
 		
 		#muestra los elementos de la ventana
 		self.window.show_all()
-		
+		#-------DEBUG---------
+		self.webview.connect("load-finished",self.VerUri)
 		#conectando los botones y eventos de la ventana a las funciones 
 		self.builder.connect_signals(self)
-		            
+
+			            
 	def home(self, widget):
 		self.webview.load_uri(web)
 				
@@ -94,8 +100,15 @@ class zKiosk:
 							
 	def noclose(widget, event,data): #evita que se cierre la ventana principal
 		return True
+	
+	def VerUri(self, view, frame):
+		uri = view.get_property("uri")
+		if(uri == "http://azul.bnct.ipn.mx/"):
+			uri = web
+			view.load_uri(uri)
 				
 if __name__ == '__main__':
+	gtk.gdk.threads_init()
 	w = zKiosk()
 	popen("xsetroot -cursor_name left_ptr")
 	w.webview.load_uri(web)
