@@ -4,8 +4,6 @@ import gtk
 import pygtk
 import webkit
 import ConfigParser
-import thread
-from threading import Timer
 from os import popen, path
 from sys import path as spath
 
@@ -41,11 +39,8 @@ class zKiosk:
 		self.builder = gtk.Builder() 
 		self.builder.add_from_file(localpath + 'zkiosk-ui.glade')
 		self.window = self.builder.get_object('window')
-		self.Browser = self.builder.get_object('Browser')
+		self.webview = self.builder.get_object('webView') 
 
-		#inicializa el widget del motor de renderizado y lo agrega a la interfaz
-		self.webview = webkit.WebView() 
-		self.Browser.add(self.webview)
 		#Cambia el user-agent (por cuestión estética y de identificación para estadísticas)
 		Settings = self.webview.get_settings()		
 		useragent = Settings.get_property("user-agent")
@@ -66,7 +61,7 @@ class zKiosk:
 		#muestra los elementos de la ventana
 		self.window.show_all()
 		#-------DEBUG---------
-		self.webview.connect("load-finished",self.VerUri)
+		self.webview.connect("navigation-policy-decision-requested",self.VerUri)
 		#conectando los botones y eventos de la ventana a las funciones 
 		self.builder.connect_signals(self)
 
@@ -101,14 +96,16 @@ class zKiosk:
 	def noclose(widget, event,data): #evita que se cierre la ventana principal
 		return True
 	
-	def VerUri(self, view, frame):
-		uri = view.get_property("uri")
-		if(uri == "http://azul.bnct.ipn.mx/"):
-			uri = web
-			view.load_uri(uri)
+	def VerUri(self,view,frame,net_req,nav_act,pol_dec):
+		uri = net_req.get_uri()
 				
+		if( "http://azul.bnct.ipn.mx" in uri ):
+			print uri
+			uri = web
+		frame.load_uri(uri)
+		return True
+		
 if __name__ == '__main__':
-	gtk.gdk.threads_init()
 	w = zKiosk()
 	popen("xsetroot -cursor_name left_ptr")
 	w.webview.load_uri(web)
