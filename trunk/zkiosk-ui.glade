@@ -96,7 +96,12 @@
             <property name="hscrollbar_policy">automatic</property>
             <property name="vscrollbar_policy">automatic</property>
             <child>
-              <placeholder/>
+			  <object class="WebKitWebView" id="webView">
+				<property name="visible">True</property>
+				<property name="app_paintable">True</property>
+				<property name="can_focus">True</property>
+				<property name="resize_mode">queue</property>
+			  </object>
             </child>
           </object>
           <packing>
