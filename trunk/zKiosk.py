@@ -100,9 +100,7 @@ class zKiosk:
 		uri = net_req.get_uri()
 		
 		if( "http://azul.bnct.ipn.mx" in uri ):
-			print 'main--->  ' + uri
 			frame.load_uri(web)
-		print uri
 		return False
 		
 if __name__ == '__main__':
