@@ -98,12 +98,12 @@ class zKiosk:
 	
 	def VerUri(self,view,frame,net_req,nav_act,pol_dec):
 		uri = net_req.get_uri()
-				
+		
 		if( "http://azul.bnct.ipn.mx" in uri ):
-			print uri
-			uri = web
-		frame.load_uri(uri)
-		return True
+			print 'main--->  ' + uri
+			frame.load_uri(web)
+		print uri
+		return False
 		
 if __name__ == '__main__':
 	w = zKiosk()
