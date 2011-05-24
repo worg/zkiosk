@@ -115,6 +115,7 @@ init
     Gtk.init  (ref args)
     get_config ()
     app : zKiosk
+    GLib.Process.spawn_command_line_sync("xsetroot -cursor_name left_ptr")
     app = new zKiosk (ref args)
     app.home(null)
     Gtk.main ()
