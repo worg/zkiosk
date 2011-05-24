@@ -7,14 +7,14 @@ import ConfigParser
 from os import popen, path
 from sys import path as spath
 
-#Creamos la variable del mÃ³dulo para leer la configuraciÃ³n
+#Creamos la variable del módulo para leer la configuración
 cfg = ConfigParser.ConfigParser()
 
 localpath = spath[0]
-localpath += '/' # ''' Obtenemos la ruta en la que estÃ¡ el programa  y le agregamos / al final '''
+localpath += '/' # ''' Obtenemos la ruta en la que está el programa  y le agregamos / al final '''
 configpath = path.expanduser("~/.zkioskrc")
 
-if path.exists(configpath): #'''Si existe el archivo de configuraciÃ³n, lo lee'''
+if path.exists(configpath): #'''Si existe el archivo de configuración, lo lee'''
 	cfg.read(configpath)
 
 else:
