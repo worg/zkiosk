@@ -7,14 +7,14 @@ import ConfigParser
 from os import popen, path
 from sys import path as spath
 
-#Creamos la variable del módulo para leer la configuración
+#Creamos la variable del mÃ³dulo para leer la configuraciÃ³n
 cfg = ConfigParser.ConfigParser()
 
 localpath = spath[0]
-localpath += '/' # ''' Obtenemos la ruta en la que está el programa  y le agregamos / al final '''
+localpath += '/' # ''' Obtenemos la ruta en la que estÃ¡ el programa  y le agregamos / al final '''
 configpath = path.expanduser("~/.zkioskrc")
 
-if path.exists(configpath): #'''Si existe el archivo de configuración, lo lee'''
+if path.exists(configpath): #'''Si existe el archivo de configuraciÃ³n, lo lee'''
 	cfg.read(configpath)
 
 else:
@@ -37,9 +37,11 @@ theme = cfg.get("Biblio","theme")
 class zKiosk:
 	def __init__(self):
 		self.builder = gtk.Builder() 
-		self.builder.add_from_file(localpath + 'zkiosk-ui.glade')
+		self.builder.add_from_file(localpath + 'zkiosk.ui')
 		self.window = self.builder.get_object('window')
-		self.webview = self.builder.get_object('webView') 
+		self.browser = self.builder.get_object('Browser') 
+		self.webview = webkit.WebView()
+		self.browser.add(self.webview)
 
 		#Cambia el user-agent (por cuestión estética y de identificación para estadísticas)
 		Settings = self.webview.get_settings()		
